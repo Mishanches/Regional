@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundcolor"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:padding="@dimen/margin_8dp"
+        android:background="@color/backgroundcolor"
+        android:layout_gravity="center"
+        android:id="@+id/llMain">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal"
+        >
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/margin_8dp"
+            android:layout_marginBottom="@dimen/margin_16dp"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:id="@+id/llKaliningrad"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:onClick="onClick"
+                android:background="?android:attr/selectableItemBackground"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/margin_16dp">
+
+                <ImageView
+                    android:id="@+id/ivKaliningrad"
+                    android:layout_width="@dimen/margin_64dp"
+                    android:layout_height="@dimen/margin_64dp"
+                    android:background="@drawable/bg_circle_purple"
+                    android:padding="@dimen/margin_10dp"
+                    android:src="@drawable/ic_directions_boat_black_24dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_10dp"
+                    android:text="@string/kaliningrad"
+                    android:textStyle="bold" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/margin_1dp"
+                    android:layout_margin="@dimen/margin_10dp"
+                    android:background="@color/lightgray" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="@dimen/margin_5dp"
+                    android:text="@string/new_eastern"
+                    android:textColor="@android:color/darker_gray" />
+
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/margin_8dp"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:id="@+id/llYaroslavl"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:onClick="onClick"
+                android:background="?android:attr/selectableItemBackground"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/margin_16dp">
+
+                <ImageView
+                    android:id="@+id/ivYaroslavl"
+                    android:layout_width="@dimen/margin_64dp"
+                    android:layout_height="@dimen/margin_64dp"
+                    android:background="@drawable/bg_circle_pink"
+                    android:padding="@dimen/margin_10dp"
+                    android:src="@drawable/ic_accessibility_black_24dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_10dp"
+                    android:text="@string/yaroslavl"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/margin_1dp"
+                    android:layout_margin="@dimen/margin_10dp"
+                    android:background="@color/lightgray" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="@dimen/margin_5dp"
+                    android:text="@string/news_central"
+                    android:textColor="@android:color/darker_gray" />
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal"
+        >
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/margin_8dp"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:id="@+id/llNovosibirsk"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:onClick="onClick"
+                android:background="?android:attr/selectableItemBackground"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/margin_16dp">
+
+                <ImageView
+                    android:id="@+id/ivNovosibirsk"
+                    android:layout_width="@dimen/margin_64dp"
+                    android:layout_height="@dimen/margin_64dp"
+                    android:background="@drawable/bg_circle_green"
+                    android:padding="@dimen/margin_10dp"
+                    android:src="@drawable/ic_ac_unit_black_24dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_10dp"
+                    android:text="@string/novosibirsk"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/margin_1dp"
+                    android:layout_margin="@dimen/margin_10dp"
+                    android:background="@color/lightgray" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="@dimen/margin_5dp"
+                    android:text="@string/news_siberian"
+                    android:textColor="@android:color/darker_gray" />
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/margin_8dp"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:id="@+id/lllYakutsk"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:onClick="onClick"
+                android:background="?android:attr/selectableItemBackground"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/margin_16dp">
+
+                <ImageView
+                    android:id="@+id/ivYakutsk"
+                    android:layout_width="@dimen/margin_64dp"
+                    android:layout_height="@dimen/margin_64dp"
+                    android:background="@drawable/bg_circle_yello"
+                    android:padding="@dimen/margin_10dp"
+                    android:src="@drawable/ic_flight_takeoff_black_24dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_10dp"
+                    android:text="@string/yakutsk"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/margin_1dp"
+                    android:layout_margin="@dimen/margin_10dp"
+                    android:background="@color/lightgray" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="@dimen/margin_5dp"
+                    android:text="@string/new_eastern"
+                    android:textColor="@android:color/darker_gray" />
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

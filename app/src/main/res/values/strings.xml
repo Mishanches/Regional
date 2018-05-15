@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Региональные новости</string>
+
+    <string name="kaliningrad">Калининград</string>
+    <string name="yaroslavl">Ярославль</string>
+    <string name="novosibirsk">Новосибирск</string>
+    <string name="yakutsk">Якутск</string>
+
+    <string name="news_west">Новости западного региона</string>
+    <string name="news_central">Новости центральной части</string>
+    <string name="news_siberian">Новости Сибирского округа</string>
+    <string name="new_eastern">Новости восточного региона</string>
+
+    <string name="title_article_kaliningrad">Новости г. Калининград</string>
+    <string name="title_article_yaroslavl">Новости г. Ярославль</string>
+    <string name="title_article_novosibirsk">Новости г. Новосибирск</string>
+    <string name="title_article_yakutsk">Новости г. Якутск</string>
+
+    <string name="fresh_news">Свежие новости портала</string>
+    <string name="one_news">Новость</string>
+
+    <string name="error_no_connection_text">Нет сети</string>
+    <string name="error_no_connection_button">Ошибка сервера</string>
+
+
+
+
+</resources>
