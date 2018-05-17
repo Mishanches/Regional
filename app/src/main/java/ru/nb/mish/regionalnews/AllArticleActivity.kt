@@ -17,15 +17,11 @@ import ru.nb.mish.regionalnews.components.IntentHelper
 import java.net.UnknownHostException
 
 
-// клас для отобраения активности - списка статей (10 новостей + кнопки в случае ошибки сервера)
-
 class AllArticleActivity : AppCompatActivity() {
 
+    // передаем в интенте статью
     val myAdapter = ArticleAdapter({startActivity(Intent(this, ArticleActivity::class.java)
-            .putExtra(IntentHelper.EXTRA_ARTICLE, it))}) // создаем экземпляр класса ArticleAdapter (myAdapter)
-    // it - это есть Article.kt, т.е. мы ее передаем
-    // в конструкторе - наподобие onClickListener: происходит запуск ArticleActivity при нажатии на той
-    // новости, на которую кликнули
+            .putExtra(IntentHelper.EXTRA_ARTICLE, it))})
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,37 +31,30 @@ class AllArticleActivity : AppCompatActivity() {
         supportActionBar?.setTitle(getString(R.string.fresh_news))
 
         rvArticle.layoutManager = LinearLayoutManager(this)
-        // РесайклВью присвоили менеджер Лайаутов для отображения, один из них - LinearLayoutManager
 
-        rvArticle.adapter = myAdapter // РесайклВью присвоили наш myAdapter, который есть ArticleAdapter вместе с интентом
+        rvArticle.adapter = myAdapter
 
-        loadNews() // при создании Активити загружаем новости
+        loadNews() // загружаем новости
 
-        swMainSwipe.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorswipe)) //установка цвета swipe
+        swMainSwipe.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorswipe))
 
         swMainSwipe.setOnRefreshListener {
-            loadNews() // при свайпе загружаем новости
+            loadNews()
         }
 
         bRefresh.setOnClickListener {
-            loadNews() // при нажатии на кнопку запускаем загрузку новостей
+            loadNews()
         }
 
     }
     private fun  loadNews() {
-        launch(UI) { // для корутинов (для асинхронного запроса)
+        launch(UI) {
             try { // ловим исключение, если нет сети
-                // тут получаем данные и присваиваем в алаптер
 
-                val articles = ServiceGenerator.serverApi.loadNews(intent.getStringExtra(IntentHelper.EXTRA_URL)).await()
-                // в перменную articles засунули ответ с сайта
-                // тут serverApi - перменная типа ServerApi из ServiceGenerator, а ServerApi - интерфейс, в котором
-                // делается запрос
-                // intent.getStringExtra(IntentHelper.EXTRA_URL) - тут получаем ссылку с MainActivity.kt(на какой сайт заходим)
-                // await() - запрос делается асинхронно
+                // переменной articles присвоили ответ с сайта
+                 val articles = ServiceGenerator.serverApi.loadNews(intent.getStringExtra(IntentHelper.EXTRA_URL)).await()
 
-                myAdapter.mData = articles // получили ответ в articles, этот ответ присвоили адаптеру - myAdapter,
-                        // mData- это список статей
+                 myAdapter.mData = articles
 
             } catch (ex: UnknownHostException) {
                 ex.printStackTrace() // метод диагностики исключения - показывает что и где произошло
@@ -76,16 +65,9 @@ class AllArticleActivity : AppCompatActivity() {
                 Toast.makeText(this@AllArticleActivity, R.string.error_no_connection_button, Toast.LENGTH_LONG).show()
             }
 
-            // !!! - тут попробывать поиграться с
-            // 1. swMainSwipe.isRefreshing = false
-            // 2. и rvArticle.visibility = if (rvArticle.adapter.itemCount == 0 )View.GONE else View.VISIBLE
             swMainSwipe.isRefreshing = false // скрываем swipe, когда новость загружена
-            // isRefreshing - это метод setRefreshing, который скрывет swipe при удачной загрузке контента
 
-            // llNoData - лайоут с кнопой и текстом ошибок
-            // если статей нет в адаптере (пришло 0 статей с сервера), то делаем это лайоут видимым
-            // else View.GONE - если есть хоть одна новость, то делаем этот лайоут невидимым
-            llNoData.visibility = if(rvArticle.adapter.itemCount == 0) View.VISIBLE else View.GONE
+           llNoData.visibility = if(rvArticle.adapter.itemCount == 0) View.VISIBLE else View.GONE
 
             rvArticle.visibility = if (rvArticle.adapter.itemCount == 0 )View.GONE else View.VISIBLE
 

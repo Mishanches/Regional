@@ -37,14 +37,12 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-jackson:2.3.0'
     // для преобразования JSON в объекты
 
-    implementation 'com.squareup.retrofit2:retrofit:2.3.0' //  библ для осущ. запросов к сети
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0' //  запросы к сети
 
     implementation 'com.jakewharton.retrofit:retrofit2-kotlin-coroutines-experimental-adapter:1.0.0'
 // поддержка coroutines
 
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:0.22.5'
-// включение поддержки coroutines (методы, которые
-    // делают ассинхронные запросы )
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:0.22.5' //методы, которые делают ассинхронные запросы
 
     implementation 'com.squareup.okhttp3:logging-interceptor:3.9.0' // логи во время отладки
     implementation 'com.android.support:design:27.1.0'

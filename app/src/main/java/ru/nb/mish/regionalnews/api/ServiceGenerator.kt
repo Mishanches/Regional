@@ -14,26 +14,22 @@ object ServiceGenerator {
     private val BASE_URL = "http://knia.ru/wp-json/wp/v2/"
 
     private val httpClient = OkHttpClient.Builder() // конфигурируем http запрос
-            .connectTimeout(10, TimeUnit.SECONDS) // коннектимся 10 сек, затем разрываем соединение
-            .readTimeout(10, TimeUnit.SECONDS) // читаем
-            .writeTimeout(10, TimeUnit.SECONDS) // записываем данные
+            .connectTimeout(10, TimeUnit.SECONDS)
+            .readTimeout(10, TimeUnit.SECONDS)
+            .writeTimeout(10, TimeUnit.SECONDS)
             // .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)) // расширенные логи
 
-            // устанавливаем retrofit - библиотека жоступа к сети
-            // исользуем ее совместно с OkHttpClient (выше)
-
-    val retrofit = Retrofit.Builder() // создаем ретрофит-клиент, который создает запрос к серверу
-            .client(httpClient.build()) // клмент для HTTP-запроса
+    val retrofit = Retrofit.Builder() // запрос к серверу через Retrofit
+            .client(httpClient.build())
             .baseUrl(BASE_URL)
-            // далее парсим данные
-            .addConverterFactory(JacksonConverterFactory.create( // библиотека Jackson для конвертирования объектов JSON с сревера
-                    // в объект Article
-                    ObjectMapper().registerModule(SimpleModule()) //тут внктренние системные классы для правильной конвертации
+            // парсим данные
+            .addConverterFactory(JacksonConverterFactory.create( // Jackson - конвертируем JSON с сревера в объект Article
+                    ObjectMapper().registerModule(SimpleModule())
             ))
-            .addCallAdapterFactory(CoroutineCallAdapterFactory())  //  включаем Корутины - асинхронные запросы к серверу
-            .build() // все, что написали, выстраиваем
+            .addCallAdapterFactory(CoroutineCallAdapterFactory())  // Корутины (асинхронные запросы к серверу)
+            .build()
 
-    val serverApi: ServerApi // ServerApi - это наш интерфейс, который делает запросы и вызывает метод loadNews
-    get() = retrofit.create(ServerApi::class.java) //
+    val serverApi: ServerApi
+    get() = retrofit.create(ServerApi::class.java)
 
 }

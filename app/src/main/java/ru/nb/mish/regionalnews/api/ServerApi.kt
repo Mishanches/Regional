@@ -6,7 +6,7 @@ import retrofit2.http.Url
 import ru.nb.mish.regionalnews.models.Article
 
 interface ServerApi {
-@GET // будем делать Get-запрос
+@GET
 fun loadNews (@Url url: String): Deferred<List<Article>>
-    // Deferred - означает корутины, а <List<Article> - список возвращаемых статей
+
 }

@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        MobileAds.initialize(this, "ca-app-pub-6071257354885611~7310611711") // инициализация должна быть в MAinActivity
+        MobileAds.initialize(this, "ca-app-pub-6071257354885611~7310611711") // реклама
     }
 
     fun onClick (view: View) {
