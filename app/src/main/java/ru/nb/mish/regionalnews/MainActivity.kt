@@ -14,39 +14,38 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        MobileAds.initialize(this, "ca-app-pub-6071257354885611~7310611711") // реклама
+        MobileAds.initialize(this, "ca-app-pub-6071257354885611~7310611711")
     }
 
-    fun onClick (view: View) {
-        when(view.id) {
-
+    fun onClick(view: View) {
+        when (view.id) {
             R.id.llKaliningrad -> {
                 val intent = Intent(this, AllArticleActivity::class.java)
                         .putExtra(IntentHelper.EXTRA_TITLE, getString(R.string.title_article_kaliningrad))
                         .putExtra(IntentHelper.EXTRA_URL, "http://knia.ru/wp-json/wp/v2/posts/")
                 startActivity(intent)
             }
-            R.id.llYaroslavl-> {
+
+            R.id.llYaroslavl -> {
                 val intent2 = Intent(this, AllArticleActivity::class.java)
                         .putExtra(IntentHelper.EXTRA_TITLE, getString(R.string.title_article_yaroslavl))
                         .putExtra(IntentHelper.EXTRA_URL, "http://imenno.ru/wp-json/wp/v2/posts")
                 startActivity(intent2)
             }
 
-            R.id.llNovosibirsk-> {
+            R.id.llNovosibirsk -> {
                 val intent3 = Intent(this, AllArticleActivity::class.java)
                         .putExtra(IntentHelper.EXTRA_TITLE, getString(R.string.title_article_novosibirsk))
                         .putExtra(IntentHelper.EXTRA_URL, "http://newsib.ru/wp-json/wp/v2/posts")
                 startActivity(intent3)
             }
 
-            R.id.lllYakutsk-> {
+            R.id.lllYakutsk -> {
                 val intent4 = Intent(this, AllArticleActivity::class.java)
                         .putExtra(IntentHelper.EXTRA_TITLE, getString(R.string.title_article_yakutsk))
                         .putExtra(IntentHelper.EXTRA_URL, "http://sakhalife.ru/wp-json/wp/v2/posts")
                 startActivity(intent4)
             }
-
         }
     }
 }

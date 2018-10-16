@@ -11,37 +11,33 @@ import ru.nb.mish.regionalnews.R
 import ru.nb.mish.regionalnews.models.Article
 import java.text.SimpleDateFormat
 
-
-class ArticleAdapter(val onArticleClick:(Article)-> Unit): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ArticleAdapter(val onArticleClick: (Article) -> Unit) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var mData: List<Article>? = null
-    //  set - для обновления информации в списке
-    set(value) {
-        field=value // field - есть mData
-        notifyDataSetChanged()
+        set(value) {
+            field = value
+            notifyDataSetChanged()
         }
 
-     // имплементация 3-ех методов
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-         return object : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_article,parent,false)) {}
+        return object : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_article, parent,
+                false)) {}
     }
 
     override fun getItemCount(): Int {
-        return mData?.size?:0
+        return mData?.size ?: 0
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
-        val article = mData!![position] // получаем из списка данных нужную статью
+        val article = mData!![position]
 
-        holder.itemView.tvTitle.text = Html.fromHtml(article.title.toString()) // поддержка HTML в textView
+        holder.itemView.tvTitle.text = Html.fromHtml(article.title.toString())
         holder.itemView.tvExcerpt.text = Html.fromHtml(article.excerpt.toString())
         holder.itemView.tvDate.text = SimpleDateFormat("dd MM yyyy").format(article.date)
 
-        // реализация клика
         holder.itemView.setOnClickListener { onArticleClick(mData!![holder.adapterPosition]) }
 
-        // ассинхронно загружаем картинки
         Glide.with(holder.itemView)
                 .load(article.getImageUrl())
                 .apply(RequestOptions().centerCrop())

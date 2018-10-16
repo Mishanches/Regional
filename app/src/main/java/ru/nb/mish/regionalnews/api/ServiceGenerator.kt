@@ -13,23 +13,20 @@ object ServiceGenerator {
 
     private val BASE_URL = "http://knia.ru/wp-json/wp/v2/"
 
-    private val httpClient = OkHttpClient.Builder() // конфигурируем http запрос
+    private val httpClient = OkHttpClient.Builder()
             .connectTimeout(10, TimeUnit.SECONDS)
             .readTimeout(10, TimeUnit.SECONDS)
             .writeTimeout(10, TimeUnit.SECONDS)
-            // .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)) // расширенные логи
 
-    val retrofit = Retrofit.Builder() // запрос к серверу через Retrofit
+    val retrofit = Retrofit.Builder()
             .client(httpClient.build())
             .baseUrl(BASE_URL)
-            // парсим данные
-            .addConverterFactory(JacksonConverterFactory.create( // Jackson - конвертируем JSON с сревера в объект Article
+            .addConverterFactory(JacksonConverterFactory.create(
                     ObjectMapper().registerModule(SimpleModule())
             ))
-            .addCallAdapterFactory(CoroutineCallAdapterFactory())  // Корутины (асинхронные запросы к серверу)
+            .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .build()
 
     val serverApi: ServerApi
-    get() = retrofit.create(ServerApi::class.java)
-
+        get() = retrofit.create(ServerApi::class.java)
 }

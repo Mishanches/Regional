@@ -21,8 +21,4 @@
 
     <string name="error_no_connection_text">Нет сети</string>
     <string name="error_no_connection_button">Ошибка сервера</string>
-
-
-
-
 </resources>

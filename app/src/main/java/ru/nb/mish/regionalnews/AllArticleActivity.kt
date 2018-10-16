@@ -16,28 +16,26 @@ import ru.nb.mish.regionalnews.api.adapter.ArticleAdapter
 import ru.nb.mish.regionalnews.components.IntentHelper
 import java.net.UnknownHostException
 
-
 class AllArticleActivity : AppCompatActivity() {
 
-    // передаем в интенте статью
-    val myAdapter = ArticleAdapter({startActivity(Intent(this, ArticleActivity::class.java)
-            .putExtra(IntentHelper.EXTRA_ARTICLE, it))})
+    val myAdapter = ArticleAdapter({
+        startActivity(Intent(this, ArticleActivity::class.java)
+                .putExtra(IntentHelper.EXTRA_ARTICLE, it))
+    })
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_all_article)
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true) // кнопка назад
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setTitle(getString(R.string.fresh_news))
 
         rvArticle.layoutManager = LinearLayoutManager(this)
-
         rvArticle.adapter = myAdapter
 
-        loadNews() // загружаем новости
+        loadNews()
 
         swMainSwipe.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorswipe))
-
         swMainSwipe.setOnRefreshListener {
             loadNews()
         }
@@ -45,38 +43,34 @@ class AllArticleActivity : AppCompatActivity() {
         bRefresh.setOnClickListener {
             loadNews()
         }
-
     }
-    private fun  loadNews() {
+
+    private fun loadNews() {
         launch(UI) {
-            try { // ловим исключение, если нет сети
+            try {
+                val articles = ServiceGenerator.serverApi.loadNews(
+                        intent.getStringExtra(IntentHelper.EXTRA_URL)).await()
 
-                // переменной articles присвоили ответ с сайта
-                 val articles = ServiceGenerator.serverApi.loadNews(intent.getStringExtra(IntentHelper.EXTRA_URL)).await()
-
-                 myAdapter.mData = articles
+                myAdapter.mData = articles
 
             } catch (ex: UnknownHostException) {
-                ex.printStackTrace() // метод диагностики исключения - показывает что и где произошло
+                ex.printStackTrace()
                 Toast.makeText(this@AllArticleActivity, R.string.error_no_connection_text, Toast.LENGTH_LONG).show()
 
-            } catch (ex:Exception) { // исключение ошибки сервера
+            } catch (ex: Exception) {
                 ex.printStackTrace()
                 Toast.makeText(this@AllArticleActivity, R.string.error_no_connection_button, Toast.LENGTH_LONG).show()
             }
 
-            swMainSwipe.isRefreshing = false // скрываем swipe, когда новость загружена
-
-           llNoData.visibility = if(rvArticle.adapter.itemCount == 0) View.VISIBLE else View.GONE
-
-            rvArticle.visibility = if (rvArticle.adapter.itemCount == 0 )View.GONE else View.VISIBLE
+            swMainSwipe.isRefreshing = false
+            llNoData.visibility = if (rvArticle.adapter.itemCount == 0) View.VISIBLE else View.GONE
+            rvArticle.visibility = if (rvArticle.adapter.itemCount == 0) View.GONE else View.VISIBLE
 
         }
     }
 
     override fun onSupportNavigateUp(): Boolean {
-    onBackPressed()
+        onBackPressed()
         return true
     }
-
 }
